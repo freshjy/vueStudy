@@ -85,4 +85,5 @@ export default{
          font-weight: 900;
          margin: 1.5rem 0 1.5rem;
     }
+    
 </style>

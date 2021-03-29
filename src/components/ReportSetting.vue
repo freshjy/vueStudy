@@ -22,11 +22,25 @@
 
             <div slot="body">
                 <div>리포트 정보</div>
-                <div>이름</div>
-                <div>주기</div>
+                <div>이름<input type="text" placeholder="사용자 ID"/></div>
+                <div>주기
+                    <select name="selectingPeriod">
+                        <option value="daily">일간</option>
+                        <option value="weekly">월간</option>
+                        <option value="yearly">연간</option>
+                    </select>
+                </div>
+                <br>
             </div>
-            <div slot="body">
-
+            <div  slot="body">
+                <div>이벤트 타입</div>
+                <div>이벤트 추가
+                    <select name="selectingEvent">
+                        <option v-for="event in events" :key="event">
+                            {{ event.eventName }}
+                        </option>
+                    </select>
+                </div>
             </div>
 
             <span slot="footer" v-on:click="reportSetModal = false">
@@ -37,6 +51,10 @@
         <table>
             <colgroup>
                 <col width="1%">
+                <col width="29%">
+                <col width="29%">
+                <col width="29%">
+                <col width="12%">
             </colgroup>
             <thead>
                 <tr class="title">
@@ -53,6 +71,20 @@
                     <td>{{val.eType}}</td>
                     <td>{{val.download}}</td>
                 </tr> -->
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>화재 보고</td>
+                    <td>월간</td>
+                    <td>화재</td>
+                    <td><button>다운로드</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>화재 보고</td>
+                    <td>연간</td>
+                    <td>움직임</td>
+                    <td><button>다운로드</button></td>
+                </tr>
             </thead>
         </table>
         
@@ -66,12 +98,24 @@ export default {
     data(){
         return{
             // report data
-            // values:[
-            //     {name:"화재 보고", period:"월간", eType:"화재", download:"□"},
-            //     {name:"화재 보고", period:"주간", eType:"화재", download:"□"}
-            // ],
+            //  values:[
+            //      {name:"화재 보고", period:"월간", eType:"화재", download:"□"},
+            //      {name:"화재 보고", period:"주간", eType:"화재", download:"□"}
+            //  ],
             // addReport data
-            reportSetModal:false
+            reportSetModal:false,
+            events:[
+                {eventName:"움직임"},
+                {eventName:"배회"},
+                {eventName:"침입"},
+                {eventName:"쓰러짐"},
+                {eventName:"화재"},
+                {eventName:"연기"},
+                {eventName:"싸움"},
+                {eventName:"주차"},
+                {eventName:"정차"},               
+                {eventName:"수위감시"}
+            ]            
         }
     },
     methods:{
@@ -109,5 +153,8 @@ table {
 }
 .addContainer{
     font-size:0.8em;
+}
+.modalBody{
+    font-size:2em;
 }
 </style>
