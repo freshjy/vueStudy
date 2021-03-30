@@ -16,15 +16,14 @@
 
         <!-- 리포트 설정 팝업 -->
         <ReportModal v-if="reportSetModal" v-on:close="reportSetModal = false">
-            <h4 slot="header">리포트 추가
+            <div slot="header">리포트 추가
                 <i class="closeModalBtn fas fa-times" v-on:click="reportSetModal = false" aria-hidden="true"></i>
-            </h4>
-
+            </div>
             <div slot="body">
                 <div>리포트 정보</div>
                 <div>이름<input type="text" placeholder="사용자 ID"/></div>
                 <div>주기
-                    <select name="selectingPeriod">
+                    <select name="selectingPeriod" v-model="selectPeriod">
                         <option value="daily">일간</option>
                         <option value="weekly">월간</option>
                         <option value="yearly">연간</option>
@@ -35,11 +34,14 @@
             <div  slot="body">
                 <div>이벤트 타입</div>
                 <div>이벤트 추가
-                    <select name="selectingEvent">
-                        <option v-for="event in events" :key="event">
+                    <select name="selectingEvent" v-model="selectEvent">
+                        <option v-for="event in events" :key="event" >
                             {{ event.eventName }}
                         </option>
                     </select>
+                </div>
+                <div>
+                <button>추가</button>
                 </div>
             </div>
 
@@ -58,7 +60,7 @@
             </colgroup>
             <thead>
                 <tr class="title">
-                    <th>v</th>
+                    <th><input type="checkbox" /></th>
                     <th>이름</th>
                     <th>주기</th>
                     <th>이벤트 타입</th>
@@ -104,6 +106,8 @@ export default {
             //  ],
             // addReport data
             reportSetModal:false,
+            selectPeriod:'daily',
+            selectEvent:'움직임',
             events:[
                 {eventName:"움직임"},
                 {eventName:"배회"},
@@ -123,7 +127,9 @@ export default {
             this.reportSetModal = !this.reportSetModal;
         },
         addReport(){
-
+            console.log(this.selectPeriod);
+            console.log(this.selectEvent);
+            console.log();
         },
         modifyReportBtn(){
             alert("리포트 수정");
