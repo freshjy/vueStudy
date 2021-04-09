@@ -17,7 +17,7 @@
             사용자 ID<button v-on:click="pwChangeBtn">암호 변경</button>
 
             <!-- 암호 변경 팝업 -->
-            <ReportModal v-if="pwChanModal" v-on:close="pwChanModal = false">
+            <Modal v-if="pwChanModal" v-on:close="pwChanModal = false">
                 <h4 slot="header" >암호 변경
                     <i class="closeModalBtn fas fa-times" v-on:click="pwChanModal = false" aria-hidden="true"></i>
                 </h4>
@@ -25,9 +25,9 @@
                 <div slot="body">새 암호 입력<input type="text" v-model="chanPw" placeholder="새 암호를 입력하세요"></div>
                 <span slot="footer" v-on:click="pwChanModal = false">
                     <button v-on:click="pwChan">변경</button>
-                    <button aria-hidden="true">취소</button>
+                    <button v-on:click="userInfoSetModal = false">취소</button>
                 </span>
-            </ReportModal>
+            </Modal>
             
         </div>
         <div class="verInfo">
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import ReportModal from './common/ReportModal.vue'
+import Modal from './common/Modal.vue'
 export default{
     data(){
         return{
@@ -74,7 +74,7 @@ export default{
         }
     },
     components:{
-        ReportModal: ReportModal
+        Modal: Modal
     }
 }
 </script>

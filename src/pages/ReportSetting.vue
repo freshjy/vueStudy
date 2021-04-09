@@ -15,7 +15,7 @@
         
 
         <!-- 리포트 설정 팝업 -->
-        <ReportModal v-if="reportSetModal" v-on:close="reportSetModal = false">
+        <Modal v-if="reportSetModal" v-on:close="reportSetModal = false">
             <div slot="header">리포트 추가
                 <i class="closeModalBtn fas fa-times" v-on:click="reportSetModal = false" aria-hidden="true"></i>
             </div>
@@ -47,9 +47,11 @@
 
             <span slot="footer" v-on:click="reportSetModal = false">
                 <button v-on:click="addReport" >추가</button>
-                <button aria-hidden="true">취소</button>
+                <button v-on:click="userInfoSetModal = false">취소</button>
             </span>
-        </ReportModal>
+        </Modal>
+
+        
         <table>
             <colgroup>
                 <col width="1%">
@@ -94,7 +96,7 @@
 </template>
 
 <script>
-import ReportModal from './common/ReportModal.vue'
+import Modal from './common/Modal.vue'
 
 export default {
     data(){
@@ -129,7 +131,6 @@ export default {
         addReport(){
             console.log(this.selectPeriod);
             console.log(this.selectEvent);
-            console.log();
         },
         modifyReportBtn(){
             alert("리포트 수정");
@@ -139,7 +140,12 @@ export default {
         }
     },
     components:{
-        ReportModal: ReportModal
+        Modal: Modal
+    },
+    head(){
+        return{
+            title:'시스템 정보'
+        }
     }
 }
 </script>

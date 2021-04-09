@@ -2,12 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import VModal from 'vue-js-modal'
 import VueGoodTablePlugin from 'vue-good-table';
-
+// axios
+import axios from 'axios'
 // import the styles 
 import 'vue-good-table/dist/vue-good-table.css'
 
-Vue.use(VueGoodTablePlugin);
-Vue.use(VModal, { dynamic: true })
+Vue.config.productionTip = false
+Vue.prototype.$http = axios
 
 new Vue({
   el: '#app',

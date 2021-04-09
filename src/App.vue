@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <!-- <SystemInfo></SystemInfo> -->
-    <ReportSetting></ReportSetting>
+    <!-- <ReportSetting></ReportSetting> -->
+    <UserInfo></UserInfo>
   </div>
 </template>
 
 <script>
-import SystemInfo from './components/SystemInfo'
-import ReportSetting from './components/ReportSetting'
+import SystemInfo from './pages/SystemInfo'
+import ReportSetting from './pages/ReportSetting'
+import UserInfo from './pages/UserInfo'
 export default{
   components:{
     // 'SystemInfo' : SystemInfo
-    'ReportSetting':ReportSetting
+    // 'ReportSetting':ReportSetting
+    'UserInfo':UserInfo
   }
 }
 </script>

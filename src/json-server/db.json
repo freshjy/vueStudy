@@ -1,0 +1,92 @@
+{
+  "todoData": [
+    {
+      "id": "kjs",
+      "firstName": "김",
+      "lastName": "정수",
+      "name": "김정수",
+      "gender": "male",
+      "team": "마크애니",
+      "position": "조장",
+      "role": "프론트엔드"
+    },
+    {
+      "id": "kjh",
+      "firstName": "김",
+      "lastName": "준호",
+      "name": "김준호",
+      "gender": "male",
+      "team": "마크애니",
+      "position": "조원",
+      "role": "프론트엔드 + 백엔드"
+    },
+    {
+      "id": "bjy",
+      "firstName": "백",
+      "lastName": "정엽",
+      "name": "백정엽",
+      "gender": "male",
+      "team": "마크애니",
+      "position": "조원",
+      "role": "프론트엔드"
+    },
+    {
+      "id": "ojy",
+      "firstName": "오",
+      "lastName": "지영",
+      "name": "오지영",
+      "gender": "female",
+      "team": "마크애니",
+      "position": "조원",
+      "role": "백엔드"
+    },
+    {
+      "id": "chj",
+      "firstName": "차",
+      "lastName": "호준",
+      "name": "차호준",
+      "gender": "male",
+      "team": "마크애니",
+      "position": "조원",
+      "role": "백엔드"
+    }
+  ],
+  "cctvGroup": [
+    {
+      "id": 1,
+      "group": "그룹1"
+    },
+    {
+      "id": 2,
+      "group": "그룹2"
+    },
+    {
+      "id": 3,
+      "group": "그룹3"
+    },
+    {
+      "id": 4,
+      "group": "그룹4"
+    },
+    {
+      "id": 5,
+      "group": "그룹5"
+    },
+    {
+      "id": 6,
+      "group": "그룹6"
+    },
+    {
+      "id": 7,
+      "group": "그룹7"
+    },
+    {
+      "id": 8,
+      "group": "그룹8"
+    },
+    {
+      "id": 9,
+      "group": "그룹9"
+    }
+  ]
+}
