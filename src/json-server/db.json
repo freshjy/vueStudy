@@ -49,6 +49,20 @@
       "team": "마크애니",
       "position": "조원",
       "role": "백엔드"
+    },
+    {
+      "id": "1",
+      "firstName": "1",
+      "lastName": "1",
+      "name": "11",
+      "gender": "",
+      "team": "1",
+      "position": "1",
+      "role": "1",
+      "cctvgroups": [
+        "그룹1",
+        "그룹2"
+      ]
     }
   ],
   "cctvGroup": [

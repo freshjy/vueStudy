@@ -1,4 +1,6 @@
 <template>
+<!-- ??????
+    -->
 <div>
     <div class="pageTitle">
         사용자 정보
@@ -25,8 +27,7 @@
             <div>이름<input type="text" v-model="lastName" placeholder="사용자 이름 입력"/></div>
             <div>성<input type="text" v-model="firstName" placeholder="성 입력"/></div>
             <div>성별
-                <select name="selectingGender" v-model="gender">
-                    <option disabled value="">남성 / 여성/ 불명</option>
+                <select name="selectingGender" v-bind="gender">
                     <option value="male">남성</option>
                     <option value="weekly">여성</option>
                     <option value="yearly">불명</option>
@@ -44,7 +45,6 @@
             </div>
             <div>CCTV 그룹
                 <select name="selectingGroup" v-model="selectGroup" >
-                    <option disabled value="">그룹1(1~128)</option>
                     <option v-for="(cctvGroups,index) in getCCTVGroups" :key="index">
                         {{cctvGroups.group}}
                     </option>
@@ -61,7 +61,7 @@
 
         <span slot="footer" v-on:click="UserInfoSetModal = false">
             <button v-on:click="addUserInfo(id,firstName,lastName,gender,team,position,role)">추가</button>
-            <button v-on:click="userInfoSetModal = false">취소</button>
+            <button v-on:click="userInfoCancle">취소</button>
         </span>
     </Modal>
 
@@ -77,8 +77,7 @@
             <div>이름<input type="text" v-model="lastName" placeholder="사용자 이름 입력"/></div>
             <div>성<input type="text" v-model="firstName" placeholder="성 입력"/></div>
             <div>성별
-                <select name="selectingGender" v-model="gender">
-                    <option disabled value="">남성 / 여성/ 불명</option>
+                <select name="selectingGender" v-bind="gender">
                     <option value="male">남성</option>
                     <option value="female">여성</option>
                     <option value="unknown">불명</option>
@@ -95,13 +94,24 @@
             <div>역할<input type="text" v-model="role" placeholder="역할 입력"/>
             </div>
             <div>CCTV 그룹
-                
+                <select name="selectingGroup" v-bind="selectGroup" >
+                    <option v-for="(cctvGroups,index) in getCCTVGroups" :key="index">
+                        {{cctvGroups.group}}
+                    </option>
+                </select>
+                <button v-on:click="addCCTVGroup(selectGroup)">추가</button>
             </div>
+            <span v-for="(cctv,index) in cctvGroups" :key="cctv">
+                {{cctv}}
+                <span class="cctvGroupRemove" type="button" v-on:click="removeCCTV(index)">
+                    <i class="closeModalBtn fas fa-times"></i>
+                </span>
+            </span>
         </div>
 
         <span slot="footer" v-on:click="UserInfoModifyModal = false">
             <button v-on:click="modifyUserInfo(id,firstName,lastName,gender,team,position,role)">수정</button>
-            <button v-on:click="modifyCancle">취소</button>
+            <button v-on:click="userInfoCancle">취소</button>
         </span>
     </Modal>
 
@@ -231,9 +241,11 @@ export default {
                         this.gender=todos[i].gender;
                         this.team=todos[i].team;
                         this.position=todos[i].position;
-                        this.role=todos[i].role;         
+                        this.role=todos[i].role;
+                        this.cctvGroups=todos[i].cctvGroup;
                     }
                 }
+                console.log(todos);
                 this.userInfoModifyModal = !this.userInfoModifyModal;
             }else{
                 alert("수정하실 사용자를 1명만 체크해 주세요")
@@ -265,7 +277,7 @@ export default {
             this.selected=[]
             this.userInfoModifyModal = !this.userInfoModifyModal;
         },
-        modifyCancle(){
+        userInfoCancle(){
             this.id = '',
             this.firstName = '',
             this.lastName = '',
@@ -275,7 +287,12 @@ export default {
             this.position = '',
             this.role = '',
             this.selected=[],
-            this.userInfoModifyModal = false
+            this.cctvGroups=[];
+            if(this.userInfoModifyModal == true){
+                this.userInfoModifyModal = false;
+            }else if(this.userInfoSetModal == true){
+                this.userInfoSetModal = false;
+            }
         },
         deleteUserInfoBtn(todo){
             for(let i=0; i<todo.length; i++){
