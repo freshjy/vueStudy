@@ -54,7 +54,7 @@
             <span v-for="(cctv,index) in cctvGroups" :key="cctv">
                 {{cctv}}
                 <span class="cctvGroupRemove" type="button" v-on:click="removeCCTV(index)">
-                    <i class="far fa-trash-alt"></i>
+                    <i class="closeModalBtn fas fa-times"></i>
                 </span>
             </span>
         </div>
@@ -213,7 +213,7 @@ export default {
                     team:team,
                     position:position,
                     role:role,
-                    cctvgroup:this.cctvGroups
+                    cctvGroups:this.cctvGroups
                 }).then((res) => {
                     this.todos.push(res.data);
                     this.id = '',
@@ -242,7 +242,7 @@ export default {
                         this.team=todos[i].team;
                         this.position=todos[i].position;
                         this.role=todos[i].role;
-                        this.cctvGroups=todos[i].cctvGroup;
+                        this.cctvGroups=todos[i].cctvGroups;
                     }
                 }
                 console.log(todos);
@@ -261,7 +261,8 @@ export default {
                     gender:gender,
                     team:team,
                     position:position,
-                    role:role
+                    role:role,
+                    cctvGroups:this.cctvGroups
                 }).then((res) => {
                     this.getTodos()
                     this.id = '',
@@ -271,7 +272,8 @@ export default {
                     this.gender = '',
                     this.team = '',
                     this.position = '',
-                    this.role = ''
+                    this.role = '',
+                    this.cctvGroups=[];
                 })
             }
             this.selected=[]
