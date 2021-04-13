@@ -113,7 +113,7 @@
         </span>
     </Modal>
 
-    <div >
+    <div>
         <table class="userTable">
             <colgroup>
                 <col width="1%">
@@ -129,8 +129,8 @@
                     <th>역할</th>
                 </tr>
             </thead>
-            <tbody class="tBody">
-                <tr v-for="(todo,i) in todos" :key="i" >
+            <tbody>
+                <tr class="tBody" v-for="(todo,i) in todos" :key="i" >
                     <td><input type="checkbox" :value="todo.id" v-model="selected"></td>
                     <td>{{ i+1 }}</td>
                     <td>{{ todo.id }}</td>
@@ -170,9 +170,6 @@ export default {
            selectAll:false
        }
    },
-   components:{
-       Modal: Modal
-    },
 
     methods:{
         getTodos(){

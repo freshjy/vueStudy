@@ -88,5 +88,68 @@
       "id": 9,
       "group": "그룹9"
     }
-  ]
+  ],
+  "cctvs": [
+    {
+      "id" :1,
+      "cctv" :"CCTV01"
+    },
+    {
+      "id" :2,
+      "cctv" :"CCTV02"
+    },
+    {
+      "id" :3,
+      "cctv" :"CCTV03"
+    },
+    {
+      "id" :4,
+      "cctv" :"CCTV04"
+    },
+    {
+      "id" :5,
+      "cctv" :"CCTV05"
+    },
+    {
+      "id" :6,
+      "cctv" :"CCTV06"
+    }
+  ],
+  "staData":[
+    {
+      "id": 1,
+      "firstName" : "이",
+      "lastName" : "관제",
+      "eventType" : "배회",
+      "processSitu" : "이상없음"
+  },
+  {
+      "id": 2,
+      "firstName" : "김",
+      "lastName" : "관제",
+      "eventType" : "침입",
+      "processSitu" : "오탐"
+  },
+  {
+      "id": 3,
+      "firstName" : "김",
+      "lastName" : "관제",
+      "eventType" : "움직임",
+      "processSitu" : "이상없음"
+  },
+  {
+      "id": 4,
+      "firstName" : "박",
+      "lastName" : "관제",
+      "eventType" : "화재",
+      "processSitu" : "이상없음"
+  },
+  {
+      "id": 5,
+      "firstName" : "김",
+      "lastName" : "관제",
+      "eventType" : "침입",
+      "processSitu" : "오탐"
+  }
+  ] 
 }
