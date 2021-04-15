@@ -75,7 +75,7 @@
             <div>이름<input type="text" v-model="lastName" placeholder="사용자 이름 입력"/></div>
             <div>성<input type="text" v-model="firstName" placeholder="성 입력"/></div>
             <div>성별
-                <select name="selectingGender" v-bind="gender">
+                <select name="selectingGender" v-model="gender">
                     <option value="male">남성</option>
                     <option value="female">여성</option>
                     <option value="unknown">불명</option>
@@ -92,7 +92,7 @@
             <div>역할<input type="text" v-model="role" placeholder="역할 입력"/>
             </div>
             <div>CCTV 그룹
-                <select name="selectingGroup" v-bind="selectGroup" >
+                <select name="selectingGroup" v-model="selectGroup" >
                     <option v-for="(cctvGroups,index) in getCCTVGroups" :key="index">
                         {{cctvGroups.group}}
                     </option>

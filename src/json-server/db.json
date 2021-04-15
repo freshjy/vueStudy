@@ -49,6 +49,21 @@
       "team": "마크애니",
       "position": "조원",
       "role": "백엔드"
+    },
+    {
+      "id": "1",
+      "firstName": "1",
+      "lastName": "1",
+      "name": "11",
+      "gender": "female",
+      "team": "1",
+      "position": "1",
+      "role": "1",
+      "cctvGroups": [
+        "그룹1",
+        "그룹3",
+        "그룹5"
+      ]
     }
   ],
   "cctvGroup": [
@@ -91,65 +106,75 @@
   ],
   "cctvs": [
     {
-      "id" :1,
-      "cctv" :"CCTV01"
+      "id": 1,
+      "cctv": "CCTVName1"
     },
     {
-      "id" :2,
-      "cctv" :"CCTV02"
+      "id": 2,
+      "cctv": "CCTVName2"
     },
     {
-      "id" :3,
-      "cctv" :"CCTV03"
+      "id": 3,
+      "cctv": "CCTVName3"
     },
     {
-      "id" :4,
-      "cctv" :"CCTV04"
+      "id": 4,
+      "cctv": "CCTVName4"
     },
     {
-      "id" :5,
-      "cctv" :"CCTV05"
+      "id": 5,
+      "cctv": "CCTVName5"
     },
     {
-      "id" :6,
-      "cctv" :"CCTV06"
+      "id": 6,
+      "cctv": "CCTVName6"
     }
   ],
-  "staData":[
+  "staData": [
     {
       "id": 1,
-      "firstName" : "이",
-      "lastName" : "관제",
-      "eventType" : "배회",
-      "processSitu" : "이상없음"
-  },
-  {
+      "cctvId": 2,
+      "cctvName": "CCTVName2",
+      "firstName": "이",
+      "lastName": "관제",
+      "eventType": "배회",
+      "processSitu": "이상없음"
+    },
+    {
       "id": 2,
-      "firstName" : "김",
-      "lastName" : "관제",
-      "eventType" : "침입",
-      "processSitu" : "오탐"
-  },
-  {
+      "cctvId": 1,
+      "cctvName": "CCTVName1",
+      "firstName": "1김",
+      "lastName": "관제",
+      "eventType": "침입",
+      "processSitu": "오탐"
+    },
+    {
       "id": 3,
-      "firstName" : "김",
-      "lastName" : "관제",
-      "eventType" : "움직임",
-      "processSitu" : "이상없음"
-  },
-  {
+      "cctvId": 1,
+      "cctvName": "CCTVName1",
+      "firstName": "2김",
+      "lastName": "관제",
+      "eventType": "움직임",
+      "processSitu": "이상없음"
+    },
+    {
       "id": 4,
-      "firstName" : "박",
-      "lastName" : "관제",
-      "eventType" : "화재",
-      "processSitu" : "이상없음"
-  },
-  {
+      "cctvId": 3,
+      "cctvName": "CCTVName3",
+      "firstName": "박",
+      "lastName": "관제",
+      "eventType": "화재",
+      "processSitu": "이상없음"
+    },
+    {
       "id": 5,
-      "firstName" : "김",
-      "lastName" : "관제",
-      "eventType" : "침입",
-      "processSitu" : "오탐"
-  }
-  ] 
+      "cctvId": 1,
+      "cctvName": "CCTVName1",
+      "firstName": "3김",
+      "lastName": "관제",
+      "eventType": "침입",
+      "processSitu": "화재"
+    }
+  ]
 }

@@ -3,25 +3,21 @@
 <div div id="app">
     <div class="pageTitle"> 
         처리 현황 통계
-        {{cctvs}}
-        {{controllersIdArr}}
-        {{controllersNameArr}}
-        {{controllers}}
     </div>
     <div>
         검색기간
     </div>
     <div>
         CCTV
-        <select name="selectingCCTV" v-model="cctv">
-            <option v-for="(cctvs, index) in getCCTVs" :key="index">
-                {{cctvs.cctv}}
+        <select name="selectingCCTV" v-model="cctvId">
+            <option v-for="(cctvs, index) in getCCTVs" :key="index" v-bind:value="cctvs.id">
+                {{cctvs.cctv + cctvs.id}}
             </option>
         </select>
-        <button v-on:click="addCCTV(cctv)">추가</button>
+        <button v-on:click="addCCTV(cctvId)">추가</button>
     </div>
 
-    <span v-for="(cctv,index) in cctvs" :key="cctv">
+    <span v-for="(cctv,index) in cctvsNameArr" :key="cctv">
         {{cctv}}
         <span class="cctvRemove" type="button" v-on:click="removeCCTV(index)">
             <i class="closeBtn fas fa-times"></i>
@@ -45,16 +41,13 @@
             </button>
         </div>
     </div>
-
-    <span v-for="(controller, index) in controllers" :key="index" >
+    
+    <span v-for="(controller, index) in controllersNameArr"  :key="index" >
         {{controller}}
         <span class="cctvRemove" type="button" v-on:click="removeController(index)">
             <i class="closeBtn fas fa-times"></i>
         </span>
     </span>
-    
-    
-    
 
     
     
@@ -69,11 +62,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="tBody1">
-                    <td>CCTV</td>
-                    <td>관제사</td>
-                    <td>이벤트 타입</td>
-                    <td>처리상황</td>
+                <tr class="tBody1" v-for="(value,index) in printProcess" :key="index">
+                    <td>{{value.cctvName}}</td>
+                    <td>{{value.controller}}</td>
+                    <td>{{value.eventType}}</td>
+                    <td>{{value.processSitu}}</td>
                 </tr>
             </tbody>
         </table>
@@ -92,6 +85,7 @@
     </div>
 </div>
 
+
 </template>
 
 <script>
@@ -100,55 +94,64 @@
 export default {
     data(){
         return{
-            cctv:'',
-            cctvs:[],
+            cctvId:'',
+            cctvsIdArr:[],
+            cctvsNameArr:[],
             controllerId:'',
             controllersIdArr:[],
             controllersNameArr:[],
             controllers:[],
+            searchProcessCCTVArr:[],
+            searchProcessControllerArr:[],
             getCCTVs:[],
-            getControllers:[]
+            getControllers:[],
+            printProcess:[],
+            saveCid: []
         }
     },
     methods:{
         getCCTVsToJson(){
             this.$http.get('http://localhost:3000/cctvs')
             .then((res) => {
-                console.log('getCCTVs:', res.data)
+                //console.log('getCCTVs:', res.data)
                 this.getCCTVs = res.data
             })            
         },
         getControllerToJson(){
             this.$http.get('http://localhost:3000/staData')
             .then((res) => {
-                console.log('getCotrollers:', res.data)
+                //console.log('getCotrollers:', res.data)
                 this.getControllers = res.data
             })
         },
-        isExistCCTV(cctv){
-            let returnFlag = false;
-            for(let i in this.cctvs){
-                if(this.cctvs[i] == cctv){
+        isExistCCTV(cctvId){
+            var returnFlag = false;
+            for(var i in this.cctvsIdArr){
+                if(this.cctvsIdArr[i] == cctvId){
                     returnFlag = true;
                 }
             }
-            console.log(returnFlag);
+            //console.log(returnFlag);
             return returnFlag;
         },
         isExistController(controllerId){
-            let returnFlag = false;
+            var returnFlag = false;
             for(var i in this.controllersIdArr){
                 if(this.controllersIdArr[i] == controllerId){
                     returnFlag = true;
                 }
             }
-            console.log(returnFlag);
+            //console.log(returnFlag);
             return returnFlag;
         },
-        addCCTV(cctv){
-            if(!this.isExistCCTV(cctv)){
-                this.cctvs.push(cctv);
-                this.cctvs.sort();
+        addCCTV(cctvId){
+            if(!this.isExistCCTV(cctvId)){
+                this.cctvsIdArr.push(cctvId);
+                for(var i=0; i<this.getCCTVs.length; i++){
+                    if(cctvId==this.getCCTVs[i].id){
+                        this.cctvsNameArr.push(this.getCCTVs[i].cctv+cctvId);
+                    }
+                }
             }else{
                 alert("이미 선택한 CCTV그룹입니다.");
             }
@@ -156,13 +159,9 @@ export default {
         addController(controllerId){
             if(!this.isExistController(controllerId)){
                 this.controllersIdArr.push(controllerId);
-                this.controllersIdArr.sort();
-                for(let i=0; i<this.getControllers.length; i++){
-                    console.log("id : " + this.getControllers[i].id);
-                    console.log("sendId:"+controllerId);
+                for(var i=0; i<this.getControllers.length; i++){
                     if(controllerId==this.getControllers[i].id){
-                        this.controllersNameArr[controllerId-1] = this.getControllers[i].firstName+this.getControllers[i].lastName;
-                        this.controllers[controllerId-1] = this.controllersNameArr[i]+controllerId;
+                        this.controllersNameArr.push(this.getControllers[i].firstName+this.getControllers[i].lastName+controllerId);
                     }
                 }
             }else{
@@ -170,13 +169,80 @@ export default {
             }
         },
         removeCCTV(index){
-            this.cctvs.splice(index,1);
+            this.cctvsIdArr.splice(index,1);
+            this.cctvsNameArr.splice(index,1);
+            this.searchProcessCCTVArr.splice(index,1);
         },
         removeController(index){
             this.controllersIdArr.splice(index,1);
             this.controllersNameArr.splice(index,1);
-            this.controllers.splice(index,1);
-        }
+        },
+        searchProcess(){
+            this.saveCid.splice(0)
+            this.printProcess.splice(0)
+
+            if( (this.cctvsIdArr.length) != 0 ){
+                for(var i=0; i<this.cctvsIdArr.length; i++){
+                    for(var j=0; j<this.getControllers.length; j++){
+                        if(this.cctvsIdArr[i] == this.getControllers[j].cctvId){
+                            if(this.saveCid.length==0){
+                                this.saveCid.push(this.getControllers[j].id)
+                            }else if(this.saveCid.length!=0){
+                                if(this.isExistCId(this.cctvsIdArr[i])){
+                                    this.saveCid.push(this.getControllers[j].id)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if( this.controllersIdArr.length != 0 ){
+                for(var i=0; i<this.controllersIdArr.length; i++){
+                    for(var j=0; j<this.getControllers.length; j++){
+                        if(this.controllersIdArr[i] == this.getControllers[j].id){
+                            if(this.saveCid.length==0){
+                                this.saveCid.push(this.getControllers[j].id)
+                            }else if(this.saveCid.length!=0){
+                                if(this.isExistCId(this.controllersIdArr[i])){
+                                    this.saveCid.push(this.getControllers[j].id)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            for(var i=0; i<this.saveCid.length; i++){
+                for(var j=0; j<this.getControllers.length; j++){
+                    if(this.saveCid[i] == this.getControllers[j].id){
+                        this.printProcess.push({
+                            cId:this.getControllers[j].id,                            
+                            cctvId:this.getControllers[j].cctvId,
+                            cctvName:this.getControllers[j].cctvName,
+                            controller:this.getControllers[j].firstName+this.getControllers[j].lastName,
+                            eventType:this.getControllers[j].eventType,
+                            processSitu:this.getControllers[j].processSitu
+                            })
+                    }
+                }
+            }           
+        },
+        getCCTTName(controllerId){
+            for(var i=0; i<this.getCCTVs.length; i++){
+                if(controllerId == this.getCCTVs[i].id){
+                    return this.getCCTVs[i].cctv;
+                }
+            }            
+        },
+        isExistCId(cid){
+            var returnFlag = true
+            for(var i=0; i<this.saveCid.length; i++){
+                if(cid == this.saveCid[i]){
+                    returnFlag = false
+                }
+            }
+            return returnFlag
+        },
     },
     components:{
         
