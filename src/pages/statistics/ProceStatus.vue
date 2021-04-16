@@ -6,6 +6,11 @@
     </div>
     <div>
         검색기간
+        <input type="text" class='datepicker-here'  v-model="firstDate"  data-timepicker="true" data-language='ko'  timeFormat= "hh:ii"/> ~ 
+        <input type="text" class='datepicker-here'  v-model="lastDate"  data-timepicker="true" data-language='ko'  timeFormat= "hh:ii aa"/>
+        
+        {{firstDate}}    
+        {{lastDate}}
     </div>
     <div>
         CCTV
@@ -84,16 +89,18 @@
         </table>
     </div>
 </div>
-
-
 </template>
+
 
 <script>
 // import PieChart from './PieChart.js'
-
+    
 export default {
     data(){
         return{
+            firstDate:'',
+            lastDate:'',
+            dd:[],
             cctvId:'',
             cctvsIdArr:[],
             cctvsNameArr:[],
@@ -181,6 +188,8 @@ export default {
             this.saveCid.splice(0)
             this.printProcess.splice(0)
 
+            console.log(this.firstDate)
+
             if( (this.cctvsIdArr.length) != 0 ){
                 for(var i=0; i<this.cctvsIdArr.length; i++){
                     for(var j=0; j<this.getControllers.length; j++){
@@ -245,12 +254,12 @@ export default {
         },
     },
     components:{
-        
+        // Datepicker
     },
     mounted(){
         this.getCCTVsToJson();
         this.getControllerToJson();
-    }
+    },
 
 }
 
