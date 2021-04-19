@@ -11,7 +11,7 @@
 import SystemInfo from './pages/SystemInfo'
 import ReportSetting from './pages/ReportSetting'
 import UserInfo from './pages/UserInfo'
-import ProceStatus from './pages/statistics/ProceStatus'
+import ProceStatus from './pages/ProceStatus'
 export default{
   components:{
     // 'SystemInfo' : SystemInfo

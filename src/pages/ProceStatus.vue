@@ -6,11 +6,13 @@
     </div>
     <div>
         검색기간
-        <input type="text" class='datepicker-here'  v-model="firstDate"  data-timepicker="true" data-language='ko'  timeFormat= "hh:ii"/> ~ 
-        <input type="text" class='datepicker-here'  v-model="lastDate"  data-timepicker="true" data-language='ko'  timeFormat= "hh:ii aa"/>
+        <!-- <input type="text" class='datepicker-here'  v-model="firstDate"  data-timepicker="true" data-language='ko'  timeFormat= "hh:ii"/> ~ 
+        <input type="text" class='datepicker-here'  v-model="lastDate"  data-timepicker="true" data-language='ko'  timeFormat= "hh:ii aa"/> -->
+        <input type="date" v-model="firstDate"/><input type="time" v-model="firstTime"/> ~ 
+        <input type="date" v-model="lastDate"/><input type="time" v-model="lastTime"/>
         
-        {{firstDate}}    
-        {{lastDate}}
+        {{firstDate + " " + firstTime}}
+        {{lastDate + " " + lastTime}}
     </div>
     <div>
         CCTV
@@ -93,13 +95,15 @@
 
 
 <script>
-// import PieChart from './PieChart.js'
+import PieChart from './jsfile/PieChart.js'
     
 export default {
     data(){
         return{
             firstDate:'',
             lastDate:'',
+            firstTime:'',
+            lastTime:'',
             dd:[],
             cctvId:'',
             cctvsIdArr:[],
@@ -187,9 +191,8 @@ export default {
         searchProcess(){
             this.saveCid.splice(0)
             this.printProcess.splice(0)
-
-            console.log(this.firstDate)
-
+            console.log(typeof this.firstDate)
+            console.log(typeof this.firstTime)  
             if( (this.cctvsIdArr.length) != 0 ){
                 for(var i=0; i<this.cctvsIdArr.length; i++){
                     for(var j=0; j<this.getControllers.length; j++){
@@ -255,6 +258,7 @@ export default {
     },
     components:{
         // Datepicker
+        // PieChart
     },
     mounted(){
         this.getCCTVsToJson();

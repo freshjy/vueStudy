@@ -14,7 +14,7 @@
     "air-datepicker": "^2.2.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
-    "chart.js": "^3.1.0",
+    "chart.js": "^3.1.1",
     "chartkick": "^4.0.3",
     "hchs-vue-charts": "^1.2.8",
     "jquery": "^3.6.0",
@@ -27,6 +27,7 @@
     "vue-good-table": "^2.21.8",
     "vue-i18n": "^8.24.2",
     "vue-js-modal": "^2.0.0-rc.6",
+    "vuejs-datetimepicker": "^1.1.13",
     "vuetify": "^2.4.9",
     "weekstart": "^1.1.0"
   },
